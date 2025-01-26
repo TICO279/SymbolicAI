@@ -1,0 +1,713 @@
+import numpy as np
+# Definimos constantes importantes para asignar valor ("peso") a las acciones que realizamos.
+profundidadMaxima = 2
+pesoGanarTablero = 300
+pesoGanarJuego = 7000
+pesoAUnoDeLinea = 20
+pesoEsquinas = 5
+pesoMovLIbre = 40
+pesoTaparLinea = 50
+
+####################################################################################################
+#                                    FUNC CREA TABLERO
+####################################################################################################
+
+
+def tableroVacio():
+  # Devuelve un tablero lleno de ceros, representando un juego de gato vacío.
+  #    a  b  c  d  e  f  g  h  i
+  tablero = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato A
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato B
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato C
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato D
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato E
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato F
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato G
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato H
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],  #Minigato I
+      [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ]  #GatoGato J
+  return tablero
+
+
+####################################################################################################
+# Función para determinar si un movimiento permite elección libre
+####################################################################################################
+
+
+def daMovimientoLibre(estadoActual, posicion):
+  """
+   estadoActual: int[10][9]
+   posicion: string
+        cadena de 2 caracteres en formato Aa
+
+    Función que devuelve True si el movimiento en la posición permite una elección libre al siguiente jugador.
+   """
+  val = ord(posicion[1]) - ord('a')
+  return estadoActual[9][val] != 0
+
+
+####################################################################################################
+# Función para verificar si hay un empate en el tablero
+####################################################################################################
+def check_empate(metatablero, tablero):
+  """
+    Meta tablero: int[10][9]
+    tablero: int
+
+    Devuelve True si el i-ésimo tablero del metatablero está empatado; es decir, está completamente lleno y nadie lo ha ganado.
+
+    """
+  # Verifica si el jugador 1 ganó el tablero
+  a = has_won(metatablero[tablero], 1)
+  # Verifica si el jugador 2 ganó el tablero
+  b = has_won(metatablero[tablero], 2)
+  cont = 0
+  # Verifica si el tablero está lleno
+  for elemento in metatablero[tablero]:
+    if elemento != 0:
+      cont += 1
+  return ((not a) and (not b) and (cont == 9))
+
+
+####################################################################################################
+#Función heurística 
+####################################################################################################
+
+
+#Función heurística prueba
+def heuristic(board):
+  """
+    board: int[10][9]
+
+  Devuelve el valor heurístico del tablero, calculando la diferencia entre nuestro puntaje y el del oponente.
+
+  """
+  player_score = 0
+  opponent_score = 0
+  # Si alguno de los dos jugadores gano el juego, el valor es infinito para el.
+  # pues es el mejor resultado posible.
+
+  if (has_won(board[9], 1)):
+    player_score = pesoGanarJuego
+  if (has_won(board[9], 2)):
+    opponent_score = pesoGanarJuego
+
+  # Ajustamos los valores según el estado del tablero grande.
+  player_score += calculate_score(board[9], 1) * 5
+  opponent_score += calculate_score(board[9], 2) * 5
+
+  # Ahora revisamos los tableros pequeños.
+  for i in range(9):
+    # Se comprueba si la IA ha ganado el tablero
+    if has_won(board[i], 1):
+      player_score += pesoGanarTablero
+    # Se comprueba si el rival ha ganado el tablero
+    elif has_won(board[i], 2):
+      opponent_score += pesoGanarTablero
+    # Si no hay ganador, calcula un valor para cada uno relativo
+    # al estado de los tableros
+    else:
+      player_score += calculate_score(board[i], 1)
+      opponent_score += calculate_score(board[i], 2)
+
+  return player_score - opponent_score
+
+
+####################################################################################################
+####################################################################################################
+#                                    FUNC IMPORTANTES PARA LA HEURÍSTICA
+####################################################################################################
+####################################################################################################
+
+####################################################################################################
+#                                    FUNC A UNO DE HACER UNA LINEA
+####################################################################################################
+
+
+def aUnodeLinea(tablero, jugador):
+  """
+  tablero: int[9]
+  jugador: int
+  Esta función verifica si el jugador tiene potencialmente una linea de 3 en el tablero
+  Si es el caso, regresa el valor de la posicion de la esquina que le falta
+
+
+  """
+
+  # Estas son las combinaciones de posiciones para lograr una línea.
+  res = 0
+  win_conditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],  # Filas
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],  # Columnas
+      [0, 4, 8],
+      [2, 4, 6]  # Diagonales
+  ]
+  #Recorremos estas posiciones y determinamos si se cumple nuestra premisa
+  for condicion in win_conditions:
+    i = 0
+    for x in condicion:
+      if (tablero[x] == jugador):
+        i += 1
+      if (i == 1):  #Si tiene 1
+        res += 2
+      if (i == 2):  #Si tiene 2
+        res += pesoAUnoDeLinea
+  return res
+
+
+####################################################################################################
+#                                    FUNC NÚMERO DE ESQUINAS Y CENTROS
+####################################################################################################
+
+
+def numeroDeEsquinas(tablero, jugador):
+  """
+  tablero: int[9]
+  jugador: int
+  Esta función determina valores para las esquinas y el centro, ya que son posiciones importanes para 
+  ganar el juego
+
+  """
+  res = 0
+  #Posiciones de las esquinas y el centro
+  pos = [0, 2, 4, 6, 8]
+  for p in pos:
+    if (tablero[p] == jugador):
+      res += pesoEsquinas
+  return res
+
+
+####################################################################################################
+#                                          FUNC TAPA AL OPONENTE
+####################################################################################################
+def taparlinea(tablero, jugador):
+  """
+  tablero: int[9]
+  jugador: int
+  Esta función determina si el jugador opuesto tiene una linea potencial en el tablero, si la tapa, le 
+  sumamos puntos al juego del jugador ya que evito un tablero ganado por el oponente.
+
+  """
+  res = 0
+  #Condiciones de victoria
+  win_conditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],  # Filas
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],  # Columnas
+      [0, 4, 8],
+      [2, 4, 6]  # Diagonales
+  ]
+  # Para cada condición de victoria, verificamos si el oponente tiene fichas ahí.
+  for condicion in win_conditions:
+    i = 0
+    j = 0
+    res = 0
+    for x in condicion:
+      if (tablero[x] == jugador):  #Revisa si yo tengo fichas ahí
+        i += 1
+      elif (tablero[x] != jugador
+            and tablero[x] != 0):  #Revisa si el oponente tiene fichas ahí
+        j += 1
+    if (
+        i == 1 and j == 2
+    ):  #Si yo tengo una y el oponente 2 entonces es un buen movimiento bloqueado         y sumo puntos
+      res += pesoTaparLinea
+  return res
+
+
+####################################################################################################
+#                                    FUNC CALCULA SCORE
+####################################################################################################
+
+
+def calculate_score(board, player):
+  """
+  tablero: int[9]
+  jugador: int
+
+  Regresa el valor calculado para el tablero 
+  Esta función es la que ayuda en gran parte a la heurística
+  """
+
+  score = 0
+
+  #Aumenta si cumple con estas funciones; en resumen, estas funciones calculan posiciones y
+  #movimientos favorables para el jugador.
+  score += aUnodeLinea(board, player)
+  score += numeroDeEsquinas(board, player)
+  score += taparlinea(board, player)
+  return score
+
+  ####################################################################################################
+# Función para verificar si hay un tablero ganado
+
+  ####################################################################################################
+
+
+def has_won(board, player):
+  """
+  tablero: int[9]
+  jugador: int
+
+  Verifica si el jugador ha ganado la partida.
+
+  Regresa True si el jugador ha ganado, False en caso contrario.
+  """
+  # Verificar filas, columnas y diagonales
+  win_conditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],  # Filas
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],  # Columnas
+      [0, 4, 8],
+      [2, 4, 6]  # Diagonales
+  ]
+  #Si cumple las condiciones, regresa verdadero.
+  for condition in win_conditions:
+    if all(board[i] == player for i in condition):
+      return True
+
+  return False
+
+
+####################################################################################################
+#                                    FUNC ESTADO FINAL
+####################################################################################################
+def edoFinal(estadoActual):
+  """
+  estadoActual: int[10][9]
+
+  Regresa true si el estado actual es un estado final; si
+  la IA o el rival han ganado el juego o si el juego se 
+  empató
+  """
+
+  a = has_won(estadoActual[9], 1)
+  b = has_won(estadoActual[9], 2)
+  c = check_empate(estadoActual, 9)
+  # Regresa verdadero si alguno de los dos jugadores ha ganado el juego o hay un empate.
+  return a or b or c
+
+
+####################################################################################################
+#                                    FUNC INPUT CORRECTO
+####################################################################################################
+def inputCorrecto(posicion):
+  """
+  posicion: string
+
+  Función que verifica que el input del usuario que esta jugando tenga el 
+  formato Xx con X €[A,I] y x €[a,i]
+  Utiliza valores asci para determinar si el valor es valido
+
+  Regresa True si el input es correcto, False en caso contrario
+  """
+  res = False
+  # len(posicion)) asegura que el input tenga 2 caracteres.
+  if (len(posicion) == 2):
+    # El primer carácter de posición debe ser mayor o igual a 65 y menor o igual a 73
+    # que son los valores ASCII asociados a las letras mayusculas entre A y I.
+    mayus = ord(posicion[0]) >= 65 and ord(posicion[0]) <= 73
+    #El segundo carácter de posición debe ser mayor o igual a 97 y menor o igual a 105
+    # que son los valores ASCII asociados a las letras minusculas entre a y i.
+    minus = ord(posicion[1]) >= 97 and ord(posicion[1]) <= 105
+    res = mayus and minus
+  return res
+
+
+####################################################################################################
+#                           FUNC DE LETRA A NÚMERO
+####################################################################################################
+
+
+def convierteletrasanum(cadena):
+  """
+  cadena: string
+
+  Regersa dos valores i,j que representan la posicion en el tablero de
+  10x9. Utiliza como referencia los valores ASCII de las letras 'A' y 'a'
+
+  """
+  #Calcula la primer letra como número
+  i = ord(cadena[0]) - ord('A')
+  #Calcula la segunda letra como número
+  j = ord(cadena[1]) - ord('a')
+
+  return i, j
+
+
+####################################################################################################
+#                           FUNC AGREGA MOVIMIENTO /ACTUALIZA TABLERO
+####################################################################################################
+def agregaMovimiento(estadoactual, posicion, player):
+  """estadoactual: int[10][9]
+    posicion: string
+    es una cadena de 2 caracteres en el formato Aa
+     player: int 
+    es el indicador de el elemento a colocar en la posicion. Puede ser 1 o 2
+
+    Regresa un nuevo estado con el movimiento realizado por el jugador.
+    """
+  i, j = convierteletrasanum(posicion)
+  # Se hace una copia del estado actual para no modificar el estado original
+  estadonuevo = [fila[:] for fila in estadoactual]
+  # Se agrega el movimiento del jugador
+  estadonuevo[i][j] = player
+  return estadonuevo
+
+
+####################################################################################################
+#                                    FUNC MOVIMIENTO VALIDO
+####################################################################################################
+def movimientoValido(estadoActual, movimiento, movimientoprev):
+  """
+  estadoActual: int[10][9]
+  posicion: string
+    es una cadena de 2 caracteres con formato valido (forma Aa)
+
+  posicionprev: string
+
+  Regresa True si el movimiento que se pretende hacer
+  coincide con el tablero marcado por el movimiento previo y 
+  si el lugar donde se pretende hacer el movimiento esta disponible.
+  """
+  i, j = convierteletrasanum(movimiento)
+  # Verifica si el tablero esta disponible
+  # en el lugar donde se pretende hacer el movimiento.
+  a = estadoActual[i][j] == 0
+  b = True
+  # Si el turno no es libre, se verifica que el tablero del movimiento
+  # que se pretende hacer para que coincida con la casilla del movimiento previo.
+  if (movimientoprev != ""):
+    b = (ord(movimiento[0]) + 32 == ord(movimientoprev[1]))
+  # Se verifica que el movimiento no se realice en un tablero ya ganado o empatado.
+  c = ord(movimiento[0]) - ord('A')
+  c = estadoActual[9][c] == 0
+
+  return (a and b and c)
+
+
+####################################################################################################
+#                                          FUNC MOVIMIENTOREPETIDO
+####################################################################################################
+
+
+def movimientorepetido(estadoactual, posicion, posicionprev):
+  """
+  Esta función verifica si el movimiento que se pretende hacer vale la pena o no dependiendo si el 
+  oponente tiene fichas en el tablero a donde se piensa mandar el siguiente turno. Si tiene fichas 
+  entonces es un peor movimiento ya que puede acumular ahi.
+  """
+  i, j = convierteletrasanum(posicion)
+  a = 0
+  resultado = 0
+  #b = False
+  if (posicionprev != ""):
+    #b = (ord(posicion[1]) == ord(posicionprev[0]) + 32)
+    #Cuenta cuántas fichas tiene el oponente en el tablero
+    a = sum(valor != 1 and valor != 0 for valor in estadoactual[j])
+
+    if (a == 0):
+      resultado = 0
+    elif (a == 1):  #Tiene 1 ficha
+      resultado = -30
+    elif (a == 2):  #Tiene 2 fichas
+      resultado = -45
+    elif (a == 3):  #Tiene 3 fichas
+      resultado = -60
+    else:
+      resultado = -75  #Tiene mas de 3 fichas, caso raro
+
+  return resultado
+
+
+####################################################################################################
+#                                          FUNC MINIMAX
+####################################################################################################
+def minimax(estadoActual, jugadorMaximizante, profundidad, movimientoprevio):
+  """
+    estadoActual: int[10][9]
+        Indica el estado actual del tablero sobre el que se evalua el minimax
+    jugadorMaximizante: bool
+        Indica que jugador tiene el turno en este estado del juego
+    profundidad: int
+        Indica la profundidad del estado actual respecto al inicial 
+        (el que lo llamó desde el juego). Cuando es == 0, se ha llegado a la profundidad 
+        máxima y por tanto debe calcular la función heurística de ese estado. 
+    """
+  # Si se ha llegado a la máxima profundidad o a un estado final.
+  if (profundidad == 0 or edoFinal(estadoActual)):
+    # Se calcula el valor heurístico asociado a este estado de tablero.
+    valor = heuristic(estadoActual)
+    return valor
+
+  # Si no se ha llegado a la máxima profundidad o a un estado final.
+  else:
+
+    # Si es el turno del jugador maximizante.
+    if jugadorMaximizante:
+      maximo = -np.inf
+      # Para todos los estados futuros POSIBLES calcula su valor minimax
+      for tableroGrande in range(ord('A'), ord('I') + 1):
+        for tableroChico in range(ord('a'), ord('i') + 1):
+          movimiento = chr(tableroGrande) + chr(tableroChico)
+          # Si el movimiento que genera uno de los estados futuros posibles, es valido
+          if (movimientoValido(estadoActual, movimiento, movimientoprevio)):
+            # Se genera el nuevo estado del tablero. Por convención, el jugador maximizante
+            # es representado con el número 1.
+            estadonuevo = agregaMovimiento(estadoActual, movimiento, 1)
+            eltablero = ord(movimiento[0]) - ord('A')
+
+            #verifica si el tablero se ganó/empato y por tanto, si hay que modificar el meta tablero
+            if (has_won(estadonuevo[eltablero], 1)):
+              estadonuevo[9][eltablero] = 1
+            else:
+              if (check_empate(estadonuevo, eltablero)):
+                estadonuevo[9][eltablero] = -1
+
+            # Se calcula el valor minimax del nuevo estado
+            valor = minimax(estadonuevo, not jugadorMaximizante,
+                            profundidad - 1, movimiento)
+            # Se aplica una penalización al valor minimax calculado
+            # en caso de que el movimiento dé libertad de elección de tablero
+            # al rival
+            if (daMovimientoLibre(estadonuevo, movimiento)):
+              valor -= pesoMovLIbre
+            # Se aplica una penalización al valor minimax calculado en caso de que permita
+            # al rival jugar multiples veces seguidas en el mismo tablero
+            valor += movimientorepetido(estadonuevo, movimiento,
+                                        movimientoprevio)
+
+            # Se toma el valor más grande, pues es el óptimo para el jugador maximizante
+            maximo = max(maximo, valor)
+      return maximo
+
+    # Si es el turno del jugador minimizante.
+    else:
+      minimo = np.inf
+      # Para todos los estados futuros POSIBLES calcula su valor minimax
+      for tableroGrande in range(ord('A'), ord('I') + 1):
+        for tableroChico in range(ord('a'), ord('i') + 1):
+          movimiento = chr(tableroGrande) + chr(tableroChico)
+          # Si el movimiento que genera uno de los estados futuros posibles, es valido
+          if (movimientoValido(estadoActual, movimiento, movimientoprevio)):
+            # Se genera el nuevo estado del tablero. Por convención, el jugador minimizante
+            # es representado con el número 2.
+            estadonuevo = agregaMovimiento(estadoActual, movimiento, 2)
+            eltablero = ord(movimiento[0]) - ord('A')
+            # Verifica si el tablero se ganó o empató y, por tanto, si hay que modificar el metatablero.
+            if (has_won(estadonuevo[eltablero], 2)):
+              estadonuevo[9][eltablero] = 2
+            else:
+              if (check_empate(estadonuevo, eltablero)):
+                estadonuevo[9][eltablero] = -1
+            # Se calcula el valor minimax del nuevo estado
+            valor = minimax(estadonuevo, not jugadorMaximizante,
+                            profundidad - 1, movimiento)
+            # Se aplica una penalización al valor minimax calculado
+            # en caso de que el movimiento dé libertad de elección de tablero
+            # al rival
+            if (daMovimientoLibre(estadonuevo, movimiento)):
+              valor += pesoMovLIbre
+            # Se aplica una penalización al valor minimax calculado en caso de que permita
+            # al rival jugar multiples veces seguidas en el mismo tablero
+            valor -= movimientorepetido(estadonuevo, movimiento,
+                                        movimientoprevio)
+            # Se toma el valor más pequeño, pues es el óptimo para el jugador minimizante
+            minimo = min(minimo, valor)
+      return minimo
+
+
+####################################################################################################
+#                                          MAIN JUEGO
+####################################################################################################
+
+####################################################################################################
+#                                          MANUAL
+####################################################################################################
+"""
+Sobre como jugar con este programa.
+
+1. Al iniciar el programa, se le solicita al usuario indicar quien inicia el juego. 
+  Por convención se responde con 'y' en caso de que la IA deba iniciar el juego y 
+  con cualquier otra cadena si el rival de la IA realiza el primer movimiento.
+
+2. Durante el juego, el rival de la IA deberá informarle a traves de la terminal en que 
+  posición desea realizar su siguiente movimiento. El formato de la posición debe ser Aa,
+  donde 'A' es una letra mayuscula entre A e I y 'a' es una letra minuscula entre a y i.
+  En caso de que el rival ingrese una posición invalida, ya sea por no seguir el formato
+  Aa o por que su movimiento no es adecuado segun las reglas del gato de gatos, el programa
+  se lo hará saber a traves de la terminal y esperara a que el rival ingrese una posición
+  valida.
+
+3. Tras informarle a la IA su movimiento, el rival ha de esperar a que, a traves
+  de la terminal, la IA informe que movimiento ha decidido hacer ella. La respuesta
+  se dará en el mismo formato utilizado por el rival de la IA.
+
+4. La IA informará al rival en que momento se ha acabado el juego e inmediatamente el 
+  programa terminara su ejecución.
+  Cabe resaltar, que a pesar de que un juego se dirija inevitablemente a un empate,
+  el programa no dará el juego por terminado hasta que el meta-tablero este completamente
+  lleno. En otras palabras, el programa seguirá funcionando hasta que no queden movimientos por realizar.
+
+5. Si desea finalizar la actividad del programa a mitad de una partida puede utilizar 
+  el comando ctr+c para acabar con su ejecución.
+
+"""
+#Se le indica al programa quién inicia el juego. El jugador maximizante
+#es la IA, mientras que el minimizante su rival.
+JugadorMax = (input("Iniciamos nosotros?") == "y")
+elJuegoSigue = True
+movimientoprevio = ""
+cont = 0
+# Se inicia el estado actual del juego con todos los tableros vacíos. El tablero se
+# representa con una matriz de 10*9 dónde cada uno de los renglones representa un
+# tablero pequeño dentro del meta-tablero y el décimo es una representación del estado
+# del meta-tablero.
+estadoActual = tableroVacio()
+# Mientras no se haya acabado la partida
+while (elJuegoSigue):
+  # Si es el turno de la IA,llamamos a la función minimax con el estado actual del juego
+  if (JugadorMax):
+    maximo = -np.inf
+    mejorMov = ""
+    # Para todos los estados futuros POSIBLES calcula su valor minimax
+    for tableroGrande in range(ord('A'), ord('I') + 1):
+      for tableroChico in range(ord('a'), ord('i') + 1):
+        movimiento = chr(tableroGrande) + chr(tableroChico)
+        # Si el movimiento que genera uno de los estados futuros posibles, es valido
+        if (movimientoValido(estadoActual, movimiento, movimientoprevio)):
+
+          # Se genera el nuevo estado del tablero. Por convención, el jugador maximizante
+          # es representado con el número 1.
+          estadonuevo = agregaMovimiento(estadoActual, movimiento, 1)
+          # Se calcula el valor minimax del nuevo estado
+          valor = minimax(estadonuevo, not JugadorMax, profundidadMaxima,
+                          movimientoprevio)
+          # Se aplica una penalización al valor minimax calculado
+          # en caso de que el movimiento dé libertad de elección de tablero
+          # al rival
+          if (daMovimientoLibre(estadonuevo, movimiento)):
+            valor -= pesoMovLIbre
+
+          valor += movimientorepetido(estadonuevo, movimiento,
+                                      movimientoprevio)
+          print(movimiento, valor)
+          # Para el jugador maximizante, se toma el estado futuro con el valor máximo
+          # disponible. Se guarda tambien el movimiento que genera ese estado futuro.
+          if (valor >= maximo):
+            maximo = valor
+            mejorMov = movimiento
+
+    print(mejorMov, maximo)
+    # Se actualiza el estado actual del juego con el movimiento elegido por la IA
+    estadoActual = agregaMovimiento(estadoActual, mejorMov, 1)
+    # Se le informa al rival de la decisión tomada
+    print("Realizamos el movimiento: " + mejorMov)
+
+    # Se guarda el movimiento elegido en la variable movimientoprevio
+    movimientoprevio = mejorMov
+
+    # Se verifica si el tablero en el que jugó la IA  se ganó o empato tras
+    # su movimiento, en cuyo caso se actualiza el estado actual del juego
+    eltablero = ord(mejorMov[0]) - ord('A')
+    if (has_won(estadoActual[eltablero], 1)):
+      estadoActual[9][eltablero] = 1
+
+    else:
+      if (check_empate(estadoActual, eltablero)):
+        estadoActual[9][eltablero] = -1
+
+    # Se verifica si el movimiento elegido por la IA, da libertad de elección
+    # de tablero al rival, en cuyo caso lo guarda en la variable movimientoprevio
+    if (daMovimientoLibre(estadoActual, movimientoprevio)):
+      movimientoprevio = ""
+
+  # Si es el turno del rival de la IA
+  else:
+    # Se recibe el movimiento a realizar por el rival a traves de la consola
+    movimientorival = input("Movimiento del rival: ")
+    # Se verifica que el formato del movimiento sea el adecuado (Aa)
+    formatoadecuado = inputCorrecto(movimientorival)
+    # Si el formato es adecuado, se verifica si el movimiento es valido bajo
+    # las reglas del juego
+    if (formatoadecuado):
+      formatoadecuado = movimientoValido(estadoActual, movimientorival,
+                                         movimientoprevio)
+
+    # Mientras el rival ingrese movimientos con formato inadecuado o que
+    # no esten en concordancia con las reglas del gato de gatos
+    while (not formatoadecuado):
+      #PALABRAS CLAVE para debugear
+      if (movimientorival == "tablero"):
+        for fila in estadoActual:
+          print(fila)
+      if (movimientorival == "previo"):
+        print(movimientoprevio)
+
+        # Se le informa al rival cuál es el problema con el input que proporcionó
+      if (not inputCorrecto(movimientorival)):
+        print("El formato de entrada es invalido")
+      else:
+        print(
+            "La posición indicada ya esta ocupada o no es el tablero adecuado")
+      # Se le solicita nuevamente al rival que informe su movimiento
+      movimientorival = input("Movimiento del rival: ")
+      formatoadecuado = inputCorrecto(movimientorival)
+      if (formatoadecuado):
+        formatoadecuado = movimientoValido(estadoActual, movimientorival,
+                                           movimientoprevio)
+
+    # # Una vez el rival ingrese un movimiento válido, se actualiza el estado actual
+    # del tablero. Por convención se representa al jugador minimizante
+    # con el número 2.
+    estadoActual = agregaMovimiento(estadoActual, movimientorival, 2)
+
+    # Guarda el movimiento del rival en la variable movimientoprevio
+    movimientoprevio = movimientorival
+
+    # Verifica si el tablero se ganó o empató y, por tanto, si hay que modificar el metatablero.
+    eltablero = ord(movimientorival[0]) - ord('A')
+    if (has_won(estadoActual[eltablero], 2)):
+      estadoActual[9][eltablero] = 2
+    else:
+      if (check_empate(estadoActual, eltablero)):
+        estadoActual[9][eltablero] = -1
+
+    # Se verifica si el movimiento elegido por el rival  da libertad de elección
+    # de tablero a la IA, en cuyo caso lo guarda en la variable movimientoprevio
+    if (daMovimientoLibre(estadoActual, movimientoprevio)):
+      movimientoprevio = ""
+
+  # Independientemente de quien haya jugado, se le indica al programa
+  # que es turno del otro jugador al modificar el valor de la variable
+  # booleana JugadorMax
+  JugadorMax = not JugadorMax
+  # Se verifica si el juego ha terminado
+  elJuegoSigue = (not edoFinal(estadoActual))
+  # Se ajusta la profundidad de busqueda según el movimiento previo. En caso de tener
+  # libertad de elección de tablero, y por tanto mayores posibilidades de elección
+  # se reduce la profundidad de busqueda.
+  profundidadMaxima = 5 if (cont > 30) else 3
+  cont += 1
+
+# Se informa al rival que el juego ha terminado
+print("Fin del juego")
+# Se imprime el estado final del tablero por si se quiere visualizar
+for fila in estadoActual:
+  print(fila)
+
+####################################################################################################
+#                                    FIN DEL PROGRAMA
+####################################################################################################

@@ -1,0 +1,432 @@
+﻿ID,Clave,Nombre
+0,ACT-11300,Cáculo Actuarial I
+1,ACT-11301,Cáculo Actuarial II
+2,ACT-11302,Cáculo Actuarial III
+3,ACT-11303,Modelos Actuariales I
+4,ACT-11304,Modelos Actuariales II
+5,ACT-13307,Estadistica aplicada a la actuaria 
+6,ACT-15352,Planes de Beneficios 
+7,ACT-15353,Practica Actuarial y Marco Inst.
+8,ACT-15357,Principios del Seguro
+9,ACT-15358,Sistemas de Seguro
+10,ACT-22306,Mátematicas Financieras II
+11,ACT-22309,Mátematicas Financieras III
+12,ACT-25354,Administración Cuantitativa de Riesgos
+13,ADM-11002,Innovación y Diseño de Modelos de Negocio
+14,ADM-11013,Administración Internacional
+15,ADM-11017,Métodos de Pronostico
+16,ADM-11018,Seminario de Dirección
+17,ADM-11101,Pronósticos de Negocios
+18,ADM-12013,Diseño y Cambio Organizacional
+19,ADM-12092,Consultoría (OP)
+20,ADM-12103,Estrategia Empresarial
+21,ADM-12107,Estrategia de Negocios I
+22,ADM-12108,Estrategia de Negocios II
+23,ADM-12251,Planeación y Ejecución de Estrategias 
+24,ADM-12301,Topicos de Negocios I
+25,ADM-12350,Decisiones de Negocios basadoas en datos
+26,ADM-12360,Neg. Sustentables y Resp. Social
+27,ADM-12417,Negocios en Paises emergentes
+28,ADM-12460,Diversidad e Inclus. en las Org
+29,ADM-13101,Desarrollo Empresarial
+30,ADM-13106,Finanzas Emprendedoras
+31,ADM-14401,Comportamiento Humano I
+32,ADM-14402,Comportamiento Humano II
+33,ADM-14405,Estruc. Proc. y Comport. Org I
+34,ADM-14413,Desarrollo de Habilides Gerenciales
+35,ADM-15501,Finanzas I
+36,ADM-15502,Finanzas II
+37,ADM-15503,Finanzas III
+38,ADM-15507,Fundamentos de Finanzas
+39,ADM-15510,Inversiones
+40,ADM-15511,Seminario de Finanzas (OP)
+41,ADM-15514,Administración de Portafolios de Inversión
+42,ADM-15517,Métodos Empíricos en Finanzas
+43,ADM-15522,Teoría de las Finanzas
+44,ADM-15528,Instrumentos Financieros
+45,ADM-15531,Mercados e Instituciones Financieras
+46,ADM-15532,Finanzas Corporativas
+47,ADM-15533,Modelos Financieros I
+48,ADM-15534,Modelos Financieros II
+49,ADM-15535,Derivados
+50,ADM-15571,Renta Fija
+51,ADM-15582,Finzs. Corpora. Avanzadas
+52,ADM-15593,Ingeniería Financiera
+53,ADM-15700,Financ. de la Innovación y capital
+54,ADM-15750,Finanzas y Sistemas Financ. Mex. 
+55,ADM-16601,Mercadotecnia I
+56,ADM-16602,Mercadotecnia II
+57,ADM-16603,Mercadotecnia III
+58,ADM-16610,Investigación de Mercados
+59,ADM-16644,Modelos de Mercadotecnia
+60,ADM-16720,Mercadotecnia para E-Commerce
+61,CLE-10131,Seminario de Ensayo
+62,CLE-10201,Inglés intensivo
+63,CLE-10202,Inglés Avanzado
+64,CLE-10516,Communication in Spanish I
+65,CLE-10517,Communication in Spanish II
+66,CLE-10518,Communication in Spanish III
+67,CSO-10001,Introducción a la Ciencia Política
+68,CSO-10003,Seminario de Análisis Político
+69,CSO-11011,Teoría Política Clásica I
+70,CSO-11012,Teoría Política Clásica II
+71,CSO-11021,Teoría Política Contemporánea
+72,CSO-11073,Justicia y Mercados: Debates…
+73,CSO-12013,Historia Política Contemporanea
+74,CSO-12041,Historia de México I
+75,CSO-12042,Historia de México II
+76,CSO-12049,Historia de México III
+77,CSO-13041,Política Mexicana Contemporánea
+78,CSO-13046,Cultura Popular y Política 
+79,CSO-14021,Política Comparada I
+80,CSO-14041,Política Comparada II
+81,CSO-14042,Política Comparada III
+82,CSO-14045,Política y Gobierno de México
+83,CSO-14051,Opinión Pública
+84,CSO-15021,Elección Pública I
+85,CSO-15022,Elección Pública II
+86,CSO-15024,Elección Pública III
+87,CSO-15041,Economía Política I
+88,CSO-15043,Economía Política II
+89,CSO-16042,Políticas Públicas
+90,CSO-16048,Tópicos de Polít. Públicas I
+91,CSO-16049,Tópicos de Pol. Públicas II
+92,CSO-17041,Métodos de Inestigación Aplicada
+93,CSO-17042,Metodología Política Avanzada
+94,CSO-19077,Seminario de Titulación por Caso
+95,CSO-19084,Seminario de Inv. Política D.
+96,COM-11101,Algoritmos y Programas
+97,COM-11102,Estructuras de Datos
+98,COM-11103,Estructuras de Datos Avanzadas
+99,COM-11302,Algoritmica y Programación
+100,COM-12101,Bases de Datos
+101,COM-12102,Análisis y Diseño de Sistemas de Información
+102,COM-12103,Fuentes de Datos
+103,COM-12104,Visualización de Información
+104,COM-14101,Fundamentos Matematicos de la Computación
+105,COM-14104,Sistemas Operativos
+106,COM-14105,Algoritmos Num. por Compu.
+107,COM-15112,Cómputo Paralelo y en la Nube
+108,COM-16203,Desarrollo de Aplicaciones Informáticas
+109,COM-16301,Herramientas Compu. y Algorit.
+110,COM-16303,Modelado Comput. para Negocios
+111,COM-16401,Computación I Intensiva
+112,COM-16412,Herr. Comp. y Prod. Empresar.
+113,COM-16413,Inteligencia de Negocios
+114,COM-16414,Aplic. TI en los Negocios
+115,COM-22102,Bases de Datos No Relacionales
+116,COM-22105,Sistemas Distribuidos
+117,COM-23106,Mineria y Analisis de Datos
+118,COM-23101,Inteligencia Artificial
+119,COM-23106,Minería de Datos
+120,COM-23114,Arq. para Gdes Volum. de Datos
+121,COM-23115,Ciencia de Datos Aplicada I
+122,COM-23116,Ciencia de Datos Aplicada II
+123,COM-23118,Chatbots e Intelig. Artificial
+124,COM-23701,Aprendizaje de Máquina
+125,COM-23705,Seg Informática y Hackeo Ético
+126,CON-10001,Proceso Contable
+127,CON-10002,Contabilidad Intermedia I
+128,CON-10003,Contabilidad Intermedia II
+129,CON-10004,Combinación de Negocios
+130,CON-10005,Anal. Financiero de la Empresa
+131,CON-10011,Cont.y Valuac. de Instr. Finan
+132,CON-10100,Contabilidad I
+133,CON-10106,Contabilidad Internacional
+134,CON-11001,Auditoría de Estados Financs.
+135,CON-11013,Contraloría
+136,CON-12001,Contabilidad de Costos
+137,CON-12002,Costos para Toma de Decisiones
+138,CON-12003,Admon. Estratégica de Costos
+139,CON-12110,Contabilidad de Costos P/Ing.
+140,CON-14100,Contabilidad Administrativa I
+141,CON-14101,Contabilidad Administrativa II
+142,CON-14109,Contabilidad Gerencial
+143,CON-15001,Impuestos Corporativos I
+144,CON-15002,Impuestos Corporativos II
+145,CON-15003,Impuestos P/ Personas Físicas
+146,CON-15125,Contabilidad Fiscal
+147,CON-18002,Estr. y Control de Riesgos Fin
+148,CEB-10001,Seminario de Bienestar: Psico
+149,DER-10003,Inst. de Derecho Pub. Mex. I
+150,DER-10005,Der. Internacional Público I
+151,DER-10006,Der. Internacional Público II
+152,DER-10008,Regimen Laboral Mexicano
+153,DER-10011,Regimen Fiscal Mexicano (CP)
+154,DER-10013,Fundamentos Jurídicos
+155,DER-10015,Derecho Empresarial
+156,DER-10016,Introd. al Derecho Corporativo
+157,DER-10017,Contratos Financ. Comparados
+158,DER-10018,Derecho Empresarial I
+159,DER-10019,Derecho Empresarial II
+160,DER-10021,Derecho Empresarial III
+161,DER-10026,Derecho Corporativo
+162,DER-10113,Derecho Público
+163,DER-10114,Sem Leg y Ética en Cienc Datos
+164,DER-11101,Teoría del Derecho I
+165,DER-11104,Cultura de la Legalidad
+166,DER-11105,Escr. y Arg. Juríd en Inglés I
+167,DER-11106,Metodología de la Disertación Juríd.
+168,DER-11107,Taller en Bienes y Der Reales
+169,DER-11108,Escr. y Arg. Juríd. en Inglés II
+170,DER-11109,Taller de Disert. Juríd en Oblig
+171,DER-11110,Taller Disert. Juríd Constitu. I
+172,DER-11111,Habilidades Juríd. Globales I
+173,DER-11112,Taller Disert. Juríd en Contrat
+174,DER-11113,Taller Disert. Juríd Constitu. II
+175,DER-11114,Habilidades Juríd. Globales II
+176,DER-11115,Taller Disert. Juríd. Constitu. III
+177,DER-11116,Taller Disert. Juríd. Admivo. I
+178,DER-11117,Habilidades Juríd. Globales III
+179,DER-11118,Concursos Internacionales
+180,DER-11119,Filosofía del Derecho
+181,DER-11120,Taller Diser. Jur. Tec. Argum. Jur.
+182,DER-11202,Teoría del Derecho II
+183,DER-11203,Investig. y Redacción Jurídica
+184,DER-11304,Argumentac. Oral y Escrita
+185,DER-11805,Filosofía del Derecho
+186,DER-11907,Técnicas de Argum. Juríd.
+187,DER-12102,Institucs. de Derecho Romano
+188,DER-12202,Historia del Derecho Mexicano
+189,DER-13026,Clinical Legal Ctro Acceso Jus
+190,DER-13030,Clin. Mediación y Just. Restaur.
+191,DER-13108,Bienes y Derechos Reales
+192,DER-13203,Negocio Juridico y Personas
+193,DER-13403,Obligaciones
+194,DER-13406,Teoría General del Proceso
+195,DER-13504,Contratos
+196,DER-13607,Proce. Civiles y Mercantiles
+197,DER-13614,Familia y Sucesiones
+198,DER-13615,Juicio Oral Civil y Familiar
+199,DER-14402,Teorías del Delito
+200,DER-14505,Delitos
+201,DER-14603,Derecho Procesal Penal
+202,DER-14606,Derecho Procesal Penal
+203,DER-14607,Juicio Oral Penal
+204,DER-15070,Seminario Estudios Género y Derecho
+205,DER-15074,Seminario Hermila Galindo
+206,DER-15076,Clin Lit Penal vs Violac DDHH
+207,DER-15082,Der. Hum. en el Prodecimiento Penal
+208,DER-15080,Clin Atn a Personas Refugiadas
+209,DER-15402,Derecho Constitucional I
+210,DER-15403,Derecho Constitucional I
+211,DER-15504,Derecho Constitucional II
+212,DER-15506,Derecho Constitucional III
+213,DER-15704,Procedim. Constitucionales
+214,DER-16019,Derecho del Sist. Financiero
+215,DER-16055,Clin. Innovac y Emprendimiento Social
+216,DER-16059,Clinica Juridica para Empresas
+217,DER-16502,Derecho Mercantil I
+218,DER-16503,Derecho Mercantil II
+219,DER-16702,Derecho Mercantil III
+220,DER-16922,Lab. Derecho Privado (Clinica)
+221,DER-16924,Insolvenc. en México y el Mundo
+222,DER-17047,Clinica en Derecho y Pol Publ.
+223,DER-17045,Clin Des Sust y Der Ambiental
+224,DER-17062,Derecho y Salud en Contexto Global
+225,DER-17601,Derecho Administrativo I
+226,DER-17702,Derecho Administrativo II
+227,DER-17703,Derecho Fiscal I
+228,DER-17804,Derecho Fiscal II
+229,DER-18600,Derecho Internacional I
+230,DER-18601,Derecho Internacional II
+231,DER-18701,Derecho Internacional Publico
+232,DER-18802,Derecho Internacional Privado
+233,DER-19005,Clin.Mejora de la Justicia Lab
+234,DER-19501,Derecho Laboral I
+235,DER-19602,Derecho Laboral II
+236,ECO-10202,Sem. de Invest. Economica II
+237,ECO-10204,Seminario de Inv. Economica
+238,ECO-10210,Seminario de Economìa Aplicada (OP)
+239,ECO-10301,Historia del Analisis Eco.
+240,ECO-10307,Justicia y Mercados
+241,ECO-10511,Top. Selectos de Econometria I
+242,ECO-10516,Microeconometria Aplicada
+243,ECO-10517,Macroeconometria Aplicada
+244,ECO-10521,Inferencia Causal
+245,ECO-11101,Economia I
+246,ECO-12102,Economia II
+247,ECO-11103,Economia III
+248,ECO-11104,Economia IV
+249,ECO-12105,Economia V
+250,ECO-11121,Microeconomia Avanzada I
+251,ECO-11122,Microeconomia Avanzada II
+252,ECO-11221,Economìa de la Incertidumbre
+253,ECO-11227,Diseño de Mercados
+254,ECO-11231,Economia de la Conducta
+255,ECO-12121,Macroeconomia Avanzada
+256,ECO-12125,Top. Selectos de Macroeconomía 
+257,ECO-12133,Macroeconomia Intermedia
+258,ECO-12201,Teoria y Politica Monetaria
+259,ECO-13101,Economia Internacional I
+260,ECO-13102,Economia Internacional II
+261,ECO-14207,Análisis Economico del Derecho I
+262,ECO-14208,Análisis Economico del Derecho II
+263,ECO-14301,Organizacion Industrial
+264,ECO-14303,Economía de la Regulación
+265,ECO-14501,Economía de la Empresa
+266,ECO-15101,Finanzas Públicas
+267,ECO-15110,Evaluación de Proyectos
+268,ECO-15111,Economía Política
+269,ECO-17100,Historia Económica de México
+270,ECO-17103,Seminario de la Economía de México 
+271,ECO-17201,Historia Económica del Siglo XX (OP)
+272,ECO-18101,Desarrollo Económico I
+273,ECO-18300,Crecimiento Económico
+274,ECO-19221,Diseño de Proy Economía Sostenible
+275,ECO-19501,Economía Regional (OP)
+276,ECO-20513,Microeconometría Avanzada
+277,ECO-21111,Teoría del Producto y Consumidor
+278,ECO-21113,Teoría de Juegos
+279,ECO-22112,Macroeconomía Dinámica I
+280,EST-10101,Estadística I
+281,EST-10102,Estadística II
+282,EST-11101,Probabilidad
+283,EST-11102,Inferencia Estadística
+284,EST-11103,Econometría I
+285,EST-11104,Econometría
+286,EST-13101,Met. Estadíst. p/c. Políticas y Relaciones Internacionales
+287,EST-14101,Cálculo de Probabilidades I
+288,EST-14102,Cálculo de Probabilidades II
+289,EST-14103,Estadística Matemática
+290,EST-14107,Procesos Estocásticos I
+291,EST-21104,Fundamentos de Econometría
+292,EST-24104,Estadística Aplicada I
+293,EST-24105,Estadística Aplicada II
+294,EST-24106,Estadística Aplicada III
+295,EST-24107,Simulación
+296,EST-24109,Temas Selectos de Estadística
+297,EST-24112,Estadística Bayesiana
+298,EST-24104,Métodos Lineales
+299,EST-24105,Métodos Multivariados
+300,EST-24106,Cálculo de Probabilidades I
+301,EST-24107,Cálculo de Probabilidades II
+302,EST-25146,Econometría Financiera Actuarial
+303,EGN-11163,New Historic Perspect. of Mex.
+304,EGN-11164,El Arte de Vivir
+305,EGN-17121,Ideas e Instituciones Políticas y Sociales I
+306,EGN-17122,Ideas e Instituciones Políticas y Sociales II
+307,EGN-17123,Ideas e Instituciones Políticas y Sociales III
+308,EGN-17141,Problemas de la Civilización Contemporánea I
+309,EGN-17142,Problemas de la Civilización Contemporánea II
+310,EGN-17161,Historia Soc.-Pol. de México
+311,EGN-17162,Problemas de la Realidad Mex.
+312,EIN-11101,Introducción a las Relaciones Internacionales
+313,EIN-12201,Historia de las Relaciones Internacionales I
+314,EIN-13104,Métodos de Inv. en Relaciones Internacionales
+315,EIN-13202,Historia de las Relaciones Internacionales II
+316,EIN-14102,Teoría de las Relaciones Internacionales
+317,EIN-14302,Historia de E.U.A.
+318,EIN-15105,Política de las Relaciones Económicas Internacionales
+319,EIN-16402,Europa Contemporánea
+320,EIN-16403,América Latina
+321,EIN-17303,Relaciones México-E.U.-Canadá
+322,EIN-17304,Formulación de la Política Exterior de Mex
+323,EIN-17403,"Japón, China y el Sudeste Asia"
+324,EIN-18602,Seminario de Titulación
+325,EIN-19317,Relaciones Contemporáneas Mex-E.U.
+326,EIN-19414,Medio Oriente
+327,EIN-19552,Cambio Climático
+328,IIO-12190,Manufactura Integrada p/Comp.
+329,IIO-13150,Modelado y Optimización I
+330,IIO-13160,Modelado y Optimización II
+331,IIO-13180,Simulación de Sistemas
+332,IIO-14160,Diseño de Planta
+333,IIO-14162,Ing. y Control de la Calidad
+334,IIO-14180,Administración y Evaluación de Proyectos
+335,IIO-14186,Ing. de Proyectos Sostenibles
+336,IIO-14193,Ing. de Procesos de Negocios
+337,IIO-14278,Administración Cadena de Suministro
+338,IIO-15130,Fundamentos de Química
+339,IIO-15140,Ciencias de los Materiales
+340,IIO-15150,Procesos de Manufactura I
+341,IIO-15170,Diseño Asistido por Computadora
+342,IIO-15171,Mecánica de Sólidos
+343,IIO-15195,Celdas Robóticas
+344,IIO-15196,Sistemas Mecatrónicos
+345,IIO-16180,Seminario de Titulación
+346,LEN-10132,Seminario de Comunicación Escrita
+347,LEN-10135,Comunicación Escrita para Matemáticas Aplicadas
+348,LEN-10141,Comunicación Escrita para Ingenía en Negocios
+349,LEN-10142,Comunicación Escrita para Ingeniería en Computación
+350,LEN-10144,Comunicación Escrita para Ingeniería Mecatrónica
+351,LEN-12002,Comunicación Escrita para Contabilidad P. y Estudios Financieros
+352,LEN-12701,Estrategias de Comunicación Escrita
+353,LEN-12702,Seminario de Comunicación Escrita
+354,LEN-12711,Comunicación Escrita para Derecho
+355,LEN-12713,Comunicación Escrita para Actuaría
+356,LEN-12714,Comunicación Escrita para Administración
+357,LEN-12715,Comunicación Escrita para Ciencias Políticas
+358,LEN-12716,Comunicación Escrita para C.P y E.F
+359,LEN-12717,Comunicación Escrita para Dirección Financiera
+360,LEN-12718,Comunicación Escrita para Economía
+361,LEN-12719,Comunicación Escrita para Matemáticas Aplicadas
+362,LEN-12721,Comunicación Escrita para Relaciones Internacionales
+363,LEN-12722,Comunicación Escrita Ciencia de Datos
+364,LEN-12724,Comunicación Escrita para Ingeniería en Computación
+365,LEN-12725,Comunicación Escrita para Ingeniería Mecatrónica
+366,LEN-12726,Comunicación Escrita para Ingeniería en Negocios
+367,LEN-12751,Comunicación Profesional para Derecho
+368,LEN-12753,Comunicación Profesional para Actuaría
+369,LEN-12754,Comunicación Profesional para Administración
+370,LEN-12755,Comunicación Profesional para Ciencias Políticas
+371,LEN-12756,Comunicación Profesional para Contabilidad y Estudios Financieros
+372,LEN-12757,Comunicación Profesional para Dirección Financiera
+373,LEN-12758,Comunicación Profesional para Economía
+374,LEN-12759,Comunicación Profesional para Matemáticas Aplicadas
+375,LEN-12761,Comunicación Profesional para Relaciones Internacionales
+376,LEN-12762,Comunicación Profesional Ciencia de Datos
+377,LEN-12765,Comunicación Profesional para Ingeniería Mecatrónica
+378,LEN-12766,Comunicación Profesional para Ingeniería en Negocios
+379,LEN-13101,Comunicación Profesional para Ingeniería en Computación
+380,LEN-15358,Comunicación Profesional para Actuaría
+381,LEN-15532,Comunicación Profesional para Dirección Financiera
+382,LEN-16403,Comunicación Profesional para Relaciones Internacionales
+383,LEN-71035,Comunicación Profesional para Economía
+384,MAT-10101,Métodos Cuantitativos para Derecho
+385,MAT-11100,Matemáticas I
+386,MAT-11101,Matemáticas II
+387,MAT-11310,Matemáticas III
+388,MAT-12100,Cálculo I
+389,MAT-12101,Cálculo II
+390,MAT-12102,Cálculo III
+391,MAT-12210,Sistemas Dinámicos
+392,MAT-12310,Álgebra Matricial
+393,MAT-14100,Cálculo Diferencial e Integral I
+394,MAT-14101,Cálculo Diferencial e Integral II
+395,MAT-14102,Cálculo Diferencial e Integral III
+396,MAT-14103,Cálculo Diferencial e Integral IV
+397,MAT-14200,Geometría Analítica (Geom Anal I)
+398,MAT-14201,Álgebra Lineal I (Geom Anal II)
+399,MAT-14205,Geometría Vectorial
+400,MAT-14280,Pensamiento Matemático
+401,MAT-14281,Matemáticas Discretas
+402,MAT-14300,Álgebra Superior I
+403,MAT-14301,Álgebra Superior II
+404,MAT-14310,Álgebra Lineal II (Álgebra Lineal)
+405,MAT-14390,Matemática Computacional
+406,MAT-14400,Cálculo Numérico I
+407,MAT-22211,Optimización
+408,MAT-22600,Matemáticas Financieras I
+409,MAT-24110,Análisis Matemático I
+410,MAT-24111,Análisis Matemático II
+411,MAT-24120,Variable Compleja
+412,MAT-24130,Teoría de la Medida (OP)
+413,MAT-24210,Sistemas Dinámicos I
+414,MAT-24211,Sistemas Dinámicos II
+415,MAT-24320,Álgebra Moderna
+416,MAT-24410,Programación Lineal
+417,MAT-24430,Análisis Aplicado I
+418,MAT-24431,Optimización Numérica I
+419,MAT-24500,Investigación de Operaciones I
+420,MAT-24630,Matemáticas Aplicadas a la Economía
+421,SDI-11120,Elementos de Física
+422,SDI-11221,Elementos de Electrónica
+423,SDI-11322,Circuitos Lógicos
+424,SDI-11561,Principios de Mecatrónica
+425,SDI-11671,Teoría de Control
+426,SDI-12625,Procesamiento Digital de Señal
+427,SDI-12629,Teoría Electromagnética
+428,SDI-13782,Diseño y Arquitectura de Redes
+429,SDI-15816,Seminario de Titulación
+430,SDI-25916,Sistemas Empresariales
