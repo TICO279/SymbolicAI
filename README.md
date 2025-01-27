@@ -51,15 +51,24 @@ This project demonstrates a Minimax-based AI for playing **Ultimate Tic-Tac-Toe*
 - The script is designed for terminal-based interaction. A graphical user interface (GUI) is not provided.
 - The algorithm heavily relies on heuristics, and any changes to these weights may significantly alter the AI’s behavior.
 
-## Project 2: Exam Scheduling with Evolutionary Algorithms
+## Project 2: Optimizing Exam Scheduling with Evolutionary Algorithms
+
+This project implements a **nested evolutionary algorithm** for solving the exam scheduling problem. The first algorithm optimizes exam assignments (rooms, times, and conflict resolution), while the second algorithm evolves parameters of the first to improve overall performance and results.
 
 ### Features
-- **Evolutionary Algorithm** for optimizing exam schedules.
-- Considers multiple constraints:
-  - Avoids scheduling conflicts for students.
-  - Balances room capacities and exam times.
-  - Avoids undesirable time slots (e.g., early mornings or meal times).
-- Generates **optimized schedules** by evolving populations of solutions through mutation and crossover.
+- **Primary Evolutionary Algorithm**:
+  - Assigns exams to rooms and time slots while minimizing scheduling conflicts and penalties.
+  - Penalizes undesirable conditions such as:
+    - Overlapping exams for the same students.
+    - Room capacity violations.
+    - Scheduling exams during undesirable time slots (e.g., early morning, lunch hours).
+  - Balances constraints to generate feasible exam schedules.
+
+- **Meta-Evolutionary Algorithm**:
+  - Evolves the parameters of the primary algorithm to improve its efficiency and quality of results.
+  - Parameters optimized include:
+    - Population size, number of generations, and mutation probability.
+    - Penalty weights for constraints like room capacity, undesirable times, and exam overlaps.
 
 ### Setup Instructions
 1. **Clone the Repository**:
