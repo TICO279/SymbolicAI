@@ -83,32 +83,45 @@ This project implements a **nested evolutionary algorithm** for solving the exam
    - **Student Preferences**: Exam schedules required by students.
 
 3. **Run the Scheduler**:
-   Execute the evolutionary algorithm by running the main Python script:
+   Execute the integrated evolutionary algorithm by running the main Python script:
    ```bash
    python exam_scheduler.py
 
 4. **Adjust Algorithm Parameters** *(Optional)*:
-   You can modify the algorithm parameters in the script to optimize the scheduling process:
-   - **Population Size**: Determines the number of candidate solutions in each generation.
-   - **Mutation Probability**: Sets the likelihood of introducing random variations to the solutions.
-   - **Penalty Weights**:
-     - `pesoH`: Penalty for scheduling exams at undesirable times.
-     - `pesoC`: Penalty for assigning exams to rooms with insufficient capacity.
-     - `pesoE`: Penalty for overlapping exams in the same room and time slot.
-     - `pesoA`: Penalty for scheduling exams that cause conflicts for students.
+   Modify parameters for both the scheduling and meta-evolutionary algorithms directly in the script to optimize the process:
+   - **Meta-Evolutionary Parameters**:
+     - `tamanoPoblacion`: Number of parameter sets in each generation.
+     - `numeroGeneraciones`: Maximum number of iterations before convergence.
+     - `varianzaLimite`: Convergence threshold for parameter optimization.
+     - `probamutacion`: Probability of mutating parameter sets during evolution.
+   - **Scheduling Algorithm Parameters**:
+     - **Penalty Weights**:
+       - `pesoH`: Penalizes scheduling exams at undesirable times (e.g., early morning or lunchtime).
+       - `pesoC`: Penalizes assigning exams to undersized rooms.
+       - `pesoE`: Penalizes overlapping exams in the same room and time slot.
+       - `pesoA`: Penalizes scheduling conflicts that prevent students from attending their exams.
+     - `Population Size`: Number of candidate schedules in each generation.
+     - `Mutation Probability`: Likelihood of introducing random variations to candidate schedules.
 
 5. **Export Results**:
-   After running the script, the results are automatically exported as CSV files in the repository directory:
-   - `ResultadosMejoresParams.csv`: Stores the best parameters found during optimization.
-   - `Parametros_Resultados.csv`: Contains parameter configurations used in successful runs.
-   - `Calificaciones_Resultados.csv`: Includes fitness scores and errors for the best solutions identified.
+   Once the script completes, it generates the following CSV files in the repository directory:
+   - **`ResultadosMejoresParams.csv`**: Contains the best parameter sets identified during meta-evolutionary optimization.
+   - **`Parametros_Resultados.csv`**: Logs all evaluated parameter configurations.
+   - **`Calificaciones_Resultados.csv`**: Includes scores, execution times, and errors for the best solutions.
+   - **Final Exam Schedules**: The most optimized exam schedules are saved for review and implementation.
+
+6. **Review Results and Refer to the Manual** *(Optional)*:
+   - Open the generated CSV files to review:
+     - The optimized parameters and their performance metrics.
+     - Final exam schedules produced by the algorithm.
+     - Errors and areas for improvement.
+   - For detailed guidance on the algorithms and their functions, consult the **Manual de Usuario** included in the project itself. It provides in-depth explanations of key functions, parameters, and use cases.
 
 ### Notes and Limitations
-- Ensure the CSV files (`salones.csv`, `materias.csv`, `alumnos.csv`) are correctly formatted and available in the repository before running the script.
-- The algorithm's performance is sensitive to the population size and mutation probability, so experimentation with these parameters may be necessary.
-- The script assumes a fixed dataset structure. Modifying the CSV structure without updating the script may result in errors.
-- Solutions are optimized for the dataset provided and may require adjustments when applied to different datasets or institutions.
-- Results are approximate and rely on heuristics, meaning they may not always yield the absolute optimal schedule.
-
-
-
+- The scheduling system employs **evolutionary algorithms** and a **meta-evolutionary approach** to optimize both schedules and parameter sets. Results are approximate and may not guarantee a globally optimal solution.
+- The algorithms are designed for the provided dataset structure. Using different datasets or modifying the CSV file formats (`salones.csv`, `materias.csv`, `alumnos.csv`) without updating the script may result in errors.
+- The **meta-evolutionary algorithm** can be computationally intensive, especially with large populations or datasets, and may require significant processing time.
+- Parameter tuning, such as population size, mutation probability, and penalty weights, has a significant impact on performance. Experimentation is recommended to find the best configuration for specific datasets.
+- The algorithms rely on heuristics for fitness evaluation, which means that minor adjustments to the weights can lead to different scheduling results or parameter optimizations.
+- Convergence of the meta-evolutionary algorithm may vary depending on the `varianzaLimite`. Premature convergence or prolonged execution may occur if parameters are not balanced.
+- Refer to the **Manual de Usuario** included in the python file for detailed explanations of the algorithms, parameters, and troubleshooting tips.
